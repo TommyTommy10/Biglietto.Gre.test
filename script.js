@@ -24,6 +24,16 @@ document.getElementById('showCountdown').addEventListener('click', function() {
     setInterval(countdown, 1000); // Update every second
 });
 
+document.getElementById('countdownIcon').addEventListener('click', function() {
+    document.getElementById('countdown').style.display = 'block';
+    countdown();
+    setInterval(countdown, 1000); // Update every second
+});
+
+document.getElementById('musicIcon').addEventListener('click', function() {
+    document.getElementById('musicPlayer').style.display = 'block';
+});
+
 function startConfetti() {
     const canvas = document.getElementById('confetti');
     const ctx = canvas.getContext('2d');
