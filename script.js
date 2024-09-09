@@ -18,8 +18,11 @@ function countdown() {
     }
 }
 
-countdown();
-setInterval(countdown, 1000); // Update every second
+document.getElementById('showCountdown').addEventListener('click', function() {
+    document.getElementById('countdown').style.display = 'block';
+    countdown();
+    setInterval(countdown, 1000); // Update every second
+});
 
 function startConfetti() {
     const canvas = document.getElementById('confetti');
