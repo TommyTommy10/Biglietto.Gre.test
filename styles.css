@@ -18,6 +18,20 @@ body {
     100% { background-position: 0% 50%; }
 }
 
+.icons {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.icons img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
 .card {
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
@@ -50,4 +64,16 @@ p {
     font-size: 2em;
     color: #ff0000;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#musicPlayer {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    text-align: center;
 }
