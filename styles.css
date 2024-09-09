@@ -1,86 +1,46 @@
-function countdown() {
-    const nextBirthday = new Date(new Date().getFullYear(), 8, 30); // Set the date to this year's birthday (September is month 8 in JavaScript)
-    const now = new Date();
-    if (now > nextBirthday) {
-        nextBirthday.setFullYear(nextBirthday.getFullYear() + 1); // If the birthday has passed this year, set it to next year
-    }
-    const diff = nextBirthday - now;
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Indie+Flower&display=swap');
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-    document.getElementById('countdown').innerText = `${days} giorni, ${hours} ore, ${minutes} minuti, ${seconds} secondi`;
-
-    if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
-        startConfetti();
-    }
+body {
+    font-family: 'Indie Flower', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(45deg, #ff0000, #ff4d4d, #ff9999, #ffcccc);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
 }
 
-countdown();
-setInterval(countdown, 1000); // Update every second
-
-function startConfetti() {
-    const canvas = document.getElementById('confetti');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const confettiCount = 300;
-    const confetti = [];
-
-    for (let i = 0; i < confettiCount; i++) {
-        confetti.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height - canvas.height,
-            r: Math.random() * 6 + 2,
-            d: Math.random() * confettiCount,
-            color: `hsl(${Math.random() * 360}, 100%, 50%)`,
-            tilt: Math.random() * 10 - 10,
-            tiltAngleIncremental: Math.random() * 0.07 + 0.05,
-            tiltAngle: 0
-        });
-    }
-
-    function drawConfetti() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        confetti.forEach((c, i) => {
-            c.tiltAngle += c.tiltAngleIncremental;
-            c.y += (Math.cos(c.d) + 1 + c.r / 2) / 2;
-            c.x += Math.sin(c.d);
-            c.tilt = Math.sin(c.tiltAngle - i / 3) * 15;
-
-            if (c.y > canvas.height) {
-                confetti[i] = {
-                    x: Math.random() * canvas.width,
-                    y: -10,
-                    r: c.r,
-                    d: c.d,
-                    color: c.color,
-                    tilt: c.tilt,
-                    tiltAngleIncremental: c.tiltAngleIncremental,
-                    tiltAngle: c.tiltAngle
-                };
-            }
-
-            ctx.beginPath();
-            ctx.lineWidth = c.r / 2;
-            ctx.strokeStyle = c.color;
-            ctx.moveTo(c.x + c.tilt + c.r, c.y);
-            ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r);
-            ctx.stroke();
-        });
-    }
-
-    function updateConfetti() {
-        drawConfetti();
-        requestAnimationFrame(updateConfetti);
-    }
-
-    updateConfetti();
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-if (new Date().getMonth() === 8 && new Date().getDate() === 30) {
-    startConfetti();
+.card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 400px;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    color: #ff0000;
+}
+
+p {
+    color: #333333;
+}
+
+.countdown {
+    margin-top: 20px;
+}
+
+#countdown {
+    font-size: 2em;
+    color: #ff0000;
 }
