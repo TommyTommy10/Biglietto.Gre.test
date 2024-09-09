@@ -81,6 +81,6 @@ function startConfetti() {
     updateConfetti();
 }
 
-if (new Date().getMonth() === 8 && new Date().getDate() === 30) {
+if (new Date().getMonth() === 8 && new Date().getDate() === 9) {
     startConfetti();
 }
