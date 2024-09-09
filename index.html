@@ -1,23 +1,46 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buon Compleanno, Gre!</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="card">
-        <h1>Buon 14° Compleanno, Gre!</h1>
-        <p>Spero che il tuo giorno speciale sia pieno di gioia, risate e tanto amore. Sei una persona incredibile e meriti tutto il meglio!</p>
-        <p>Con affetto,</p>
-        <p>Tommy</p>
-        <div class="countdown">
-            <h2>Tempo fino al prossimo compleanno:</h2>
-            <p id="countdown"></p>
-        </div>
-    </div>
-    <canvas id="confetti"></canvas>
-    <script src="script.js"></script>
-</body>
-</html>
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@300&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(45deg, #ff0000, #ff4d4d, #ff9999, #ffcccc);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 400px;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    color: #ff0000;
+}
+
+p {
+    color: #333333;
+}
+
+.countdown {
+    margin-top: 20px;
+}
+
+#countdown {
+    font-size: 2em;
+    color: #ff0000;
+}
