@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="icons">
+        <img src="countdown-icon.png" id="countdownIcon" alt="Countdown Icon">
+        <img src="music-icon.png" id="musicIcon" alt="Music Icon">
+    </div>
     <div class="card">
         <h1>Buon 14° Compleanno, Gre!</h1>
         <p>Spero che il tuo giorno speciale sia pieno di gioia, risate e tanto amore. Sei una persona incredibile e meriti tutto il meglio!</p>
@@ -18,6 +22,15 @@
         </div>
     </div>
     <canvas id="confetti"></canvas>
+    <div id="musicPlayer" style="display: none;">
+        <h2>Playlist di Compleanno</h2>
+        <audio controls>
+            <source src="song1.mp3" type="audio/mpeg">
+            <source src="song2.mp3" type="audio/mpeg">
+            <source src="song3.mp3" type="audio/mpeg">
+            Il tuo browser non supporta l'elemento audio.
+        </audio>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
