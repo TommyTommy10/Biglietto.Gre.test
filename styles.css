@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Indie+Flower&display=swap');
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Indie Flower', cursive;
     display: flex;
     justify-content: center;
     align-items: center;
