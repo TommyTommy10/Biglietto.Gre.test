@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Indie+Flower&family=Raleway:wght@400;700&family=Selima&display=swap');
 
 body {
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Raleway', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,6 +30,11 @@ body {
     width: 30px;
     height: 30px;
     cursor: pointer;
+}
+
+#musicIcon {
+    position: absolute;
+    right: 10px;
 }
 
 .card {
