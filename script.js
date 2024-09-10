@@ -18,17 +18,6 @@ function countdown() {
     }
 }
 
-document.getElementById('showCountdown').addEventListener('click', function() {
-    const countdownElement = document.getElementById('countdown');
-    if (countdownElement.style.display === 'none') {
-        countdownElement.style.display = 'block';
-        countdown();
-        setInterval(countdown, 1000); // Update every second
-    } else {
-        countdownElement.style.display = 'none';
-    }
-});
-
 document.getElementById('countdownIcon').addEventListener('click', function() {
     const countdownElement = document.getElementById('countdown');
     if (countdownElement.style.display === 'none') {
@@ -95,4 +84,20 @@ function startConfetti() {
             ctx.beginPath();
             ctx.lineWidth = c.r / 2;
             ctx.strokeStyle = c.color;
-            ctx.moveTo(c.x + c.tilt
+            ctx.moveTo(c.x + c.tilt + c.r, c.y);
+            ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r);
+            ctx.stroke();
+        });
+    }
+
+    function updateConfetti() {
+        drawConfetti();
+        requestAnimationFrame(updateConfetti);
+    }
+
+    updateConfetti();
+}
+
+if (new Date().getMonth() === 8 && new Date().getDate() === 30) {
+    startConfetti();
+}
