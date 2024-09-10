@@ -21,20 +21,16 @@ body {
 .icons {
     position: absolute;
     top: 10px;
-    left: 10px;
+    width: 100%;
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
+    padding: 0 20px;
 }
 
 .icons img {
     width: 30px;
     height: 30px;
     cursor: pointer;
-}
-
-#musicIcon {
-    position: absolute;
-    right: 10px;
 }
 
 .card {
