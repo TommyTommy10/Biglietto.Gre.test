@@ -1,22 +1,6 @@
-function countdown() {
-    const nextBirthday = new Date(new Date().getFullYear(), 8, 30); // Set the date to this year's birthday (September is month 8 in JavaScript)
-    const now = new Date();
-    if (now > nextBirthday) {
-        nextBirthday.setFullYear(nextBirthday.getFullYear() + 1); // If the birthday has passed this year, set it to next year
-    }
-    const diff = nextBirthday - now;
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-    document.getElementById('countdown').innerText = `${days} giorni, ${hours} ore, ${minutes} minuti, ${seconds} secondi`;
-
-    if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
-        startConfetti();
-    }
-}
+const audioPlayer = document.getElementById('audioPlayer');
+const songs = ['song1.mp3', 'song2.mp3', 'song3.mp3'];
+let currentSongIndex = 0;
 
 document.getElementById('countdownIcon').addEventListener('click', function() {
     const countdownElement = document.getElementById('countdown');
@@ -37,6 +21,44 @@ document.getElementById('musicIcon').addEventListener('click', function() {
         musicPlayer.style.display = 'none';
     }
 });
+
+document.getElementById('prevBtn').addEventListener('click', function() {
+    currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+    audioPlayer.src = songs[currentSongIndex];
+    audioPlayer.play();
+});
+
+document.getElementById('nextBtn').addEventListener('click', function() {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    audioPlayer.src = songs[currentSongIndex];
+    audioPlayer.play();
+});
+
+audioPlayer.addEventListener('ended', function() {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    audioPlayer.src = songs[currentSongIndex];
+    audioPlayer.play();
+});
+
+function countdown() {
+    const nextBirthday = new Date(new Date().getFullYear(), 8, 30); // Set the date to this year's birthday (September is month 8 in JavaScript)
+    const now = new Date();
+    if (now > nextBirthday) {
+        nextBirthday.setFullYear(nextBirthday.getFullYear() + 1); // If the birthday has passed this year, set it to next year
+    }
+    const diff = nextBirthday - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('countdown').innerText = `${days} giorni, ${hours} ore, ${minutes} minuti, ${seconds} secondi`;
+
+    if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
+        startConfetti();
+    }
+}
 
 function startConfetti() {
     const canvas = document.getElementById('confetti');
@@ -62,42 +84,4 @@ function startConfetti() {
 
     function drawConfetti() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        confetti.forEach((c, i) => {
-            c.tiltAngle += c.tiltAngleIncremental;
-            c.y += (Math.cos(c.d) + 1 + c.r / 2) / 2;
-            c.x += Math.sin(c.d);
-            c.tilt = Math.sin(c.tiltAngle - i / 3) * 15;
-
-            if (c.y > canvas.height) {
-                confetti[i] = {
-                    x: Math.random() * canvas.width,
-                    y: -10,
-                    r: c.r,
-                    d: c.d,
-                    color: c.color,
-                    tilt: c.tilt,
-                    tiltAngleIncremental: c.tiltAngleIncremental,
-                    tiltAngle: c.tiltAngle
-                };
-            }
-
-            ctx.beginPath();
-            ctx.lineWidth = c.r / 2;
-            ctx.strokeStyle = c.color;
-            ctx.moveTo(c.x + c.tilt + c.r, c.y);
-            ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r);
-            ctx.stroke();
-        });
-    }
-
-    function updateConfetti() {
-        drawConfetti();
-        requestAnimationFrame(updateConfetti);
-    }
-
-    updateConfetti();
-}
-
-if (new Date().getMonth() === 8 && new Date().getDate() === 30) {
-    startConfetti();
-}
+        confetti.forEach((c, i) =>
