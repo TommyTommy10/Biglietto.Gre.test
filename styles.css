@@ -9,7 +9,7 @@ body {
     margin: 0;
     background: linear-gradient(45deg, #ff0000, #ff4d4d, #ff9999, #ffcccc);
     background-size: 400% 400%;
-    animation: gradient 10s ease infinite;
+    animation: gradient 15s ease infinite;
 }
 
 @keyframes gradient {
@@ -47,7 +47,7 @@ body {
 }
 
 h1 {
-    font-family: 'Selima', cursive;
+    font-family: 'Pacifico', cursive;
     color: #ff0000;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -77,4 +77,24 @@ p {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 10px;
     text-align: center;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.controls button {
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
 }
