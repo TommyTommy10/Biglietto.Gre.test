@@ -1,6 +1,39 @@
 const audioPlayer = document.getElementById('audioPlayer');
-const songs = ['song1.mp3', 'song2.mp3', 'song3.mp3'];
+const songs = [
+    "https://github.com/TommyTommy10/Biglietto.Gre.test/raw/main/30%C2%B0",
+    "https://github.com/TommyTommy10/Biglietto.Gre.test/raw/main/Cupido",
+    "https://github.com/TommyTommy10/Biglietto.Gre.test/raw/main/Skott%2520-%2520Overcome%2520%2528Official%2520Lyric%2520Video%2529.mp3"
+];
 let currentSongIndex = 0;
+
+function updateSong() {
+    audioPlayer.src = songs[currentSongIndex];
+    audioPlayer.load();
+    audioPlayer.play();
+}
+
+document.getElementById('prevBtn').addEventListener('click', function() {
+    currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+    updateSong();
+});
+document.getElementById('prevBtn').addEventListener('touchstart', function() {
+    currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+    updateSong();
+});
+
+document.getElementById('nextBtn').addEventListener('click', function() {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    updateSong();
+});
+document.getElementById('nextBtn').addEventListener('touchstart', function() {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    updateSong();
+});
+
+audioPlayer.addEventListener('ended', function() {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    updateSong();
+});
 
 function toggleCountdown() {
     const countdownElement = document.getElementById('countdown');
@@ -27,34 +60,6 @@ document.getElementById('countdownIcon').addEventListener('touchstart', toggleCo
 
 document.getElementById('musicIcon').addEventListener('click', toggleMusicPlayer);
 document.getElementById('musicIcon').addEventListener('touchstart', toggleMusicPlayer);
-
-document.getElementById('prevBtn').addEventListener('click', function() {
-    currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-    audioPlayer.src = songs[currentSongIndex];
-    audioPlayer.play();
-});
-document.getElementById('prevBtn').addEventListener('touchstart', function() {
-    currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-    audioPlayer.src = songs[currentSongIndex];
-    audioPlayer.play();
-});
-
-document.getElementById('nextBtn').addEventListener('click', function() {
-    currentSongIndex = (currentSongIndex + 1) % songs.length;
-    audioPlayer.src = songs[currentSongIndex];
-    audioPlayer.play();
-});
-document.getElementById('nextBtn').addEventListener('touchstart', function() {
-    currentSongIndex = (currentSongIndex + 1) % songs.length;
-    audioPlayer.src = songs[currentSongIndex];
-    audioPlayer.play();
-});
-
-audioPlayer.addEventListener('ended', function() {
-    currentSongIndex = (currentSongIndex + 1) % songs.length;
-    audioPlayer.src = songs[currentSongIndex];
-    audioPlayer.play();
-});
 
 function countdown() {
     const nextBirthday = new Date(new Date().getFullYear(), 8, 30); // Set the date to this year's birthday (September is month 8 in JavaScript)
