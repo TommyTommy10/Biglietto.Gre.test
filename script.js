@@ -64,7 +64,7 @@ document.getElementById('musicIcon').addEventListener('click', toggleMusicPlayer
 document.getElementById('musicIcon').addEventListener('touchstart', toggleMusicPlayer);
 
 function countdown() {
-    const nextBirthday = new Date(new Date().getFullYear(), 8, 30); // Set the date to this year's birthday (September is month 8 in JavaScript)
+    const nextBirthday = new Date(new Date().getFullYear(), 8, 15); // Set the date to this year's birthday (September is month 8 in JavaScript)
     const now = new Date();
     if (now > nextBirthday) {
         nextBirthday.setFullYear(nextBirthday.getFullYear() + 1); // If the birthday has passed this year, set it to next year
