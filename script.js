@@ -9,7 +9,9 @@ let currentSongIndex = 0;
 function updateSong() {
     audioPlayer.src = songs[currentSongIndex];
     audioPlayer.load();
-    audioPlayer.play();
+    audioPlayer.play().catch(error => {
+        console.error('Errore durante la riproduzione:', error);
+    });
 }
 
 document.getElementById('prevBtn').addEventListener('click', function() {
