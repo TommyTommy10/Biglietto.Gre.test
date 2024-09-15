@@ -5,6 +5,7 @@ const songs = [
     "https://github.com/TommyTommy10/Biglietto.Gre.test/raw/main/Skott%2520-%2520Overcome%2520%2528Official%2520Lyric%2520Video%2529.mp3"
 ];
 let currentSongIndex = 0;
+let isPlaying = false;
 
 function updateSong() {
     audioPlayer.src = songs[currentSongIndex];
@@ -14,19 +15,33 @@ function updateSong() {
     });
 }
 
+function togglePlayPause() {
+    if (isPlaying) {
+        audioPlayer.pause();
+    } else {
+        audioPlayer.play().catch(error => {
+            console.error('Errore durante la riproduzione:', error);
+        });
+    }
+    isPlaying = !isPlaying;
+}
+
 document.getElementById('prevBtn').addEventListener('pointerdown', function() {
     currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
     updateSong();
+    isPlaying = true;
 });
 
 document.getElementById('nextBtn').addEventListener('pointerdown', function() {
     currentSongIndex = (currentSongIndex + 1) % songs.length;
     updateSong();
+    isPlaying = true;
 });
 
 audioPlayer.addEventListener('ended', function() {
     currentSongIndex = (currentSongIndex + 1) % songs.length;
     updateSong();
+    isPlaying = true;
 });
 
 function toggleCountdown() {
