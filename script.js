@@ -14,20 +14,12 @@ function updateSong() {
     });
 }
 
-document.getElementById('prevBtn').addEventListener('click', function() {
-    currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-    updateSong();
-});
-document.getElementById('prevBtn').addEventListener('touchstart', function() {
+document.getElementById('prevBtn').addEventListener('pointerdown', function() {
     currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
     updateSong();
 });
 
-document.getElementById('nextBtn').addEventListener('click', function() {
-    currentSongIndex = (currentSongIndex + 1) % songs.length;
-    updateSong();
-});
-document.getElementById('nextBtn').addEventListener('touchstart', function() {
+document.getElementById('nextBtn').addEventListener('pointerdown', function() {
     currentSongIndex = (currentSongIndex + 1) % songs.length;
     updateSong();
 });
@@ -57,11 +49,8 @@ function toggleMusicPlayer() {
     }
 }
 
-document.getElementById('countdownIcon').addEventListener('click', toggleCountdown);
-document.getElementById('countdownIcon').addEventListener('touchstart', toggleCountdown);
-
-document.getElementById('musicIcon').addEventListener('click', toggleMusicPlayer);
-document.getElementById('musicIcon').addEventListener('touchstart', toggleMusicPlayer);
+document.getElementById('countdownIcon').addEventListener('pointerdown', toggleCountdown);
+document.getElementById('musicIcon').addEventListener('pointerdown', toggleMusicPlayer);
 
 function countdown() {
     const nextBirthday = new Date(new Date().getFullYear(), 8, 30); // Set the date to this year's birthday (September is month 8 in JavaScript)
