@@ -2,7 +2,7 @@ const audioPlayer = document.getElementById('audioPlayer');
 const songs = ['song1.mp3', 'song2.mp3', 'song3.mp3'];
 let currentSongIndex = 0;
 
-document.getElementById('countdownIcon').addEventListener('click', function() {
+function toggleCountdown() {
     const countdownElement = document.getElementById('countdown');
     if (countdownElement.style.display === 'none') {
         countdownElement.style.display = 'block';
@@ -11,24 +11,40 @@ document.getElementById('countdownIcon').addEventListener('click', function() {
     } else {
         countdownElement.style.display = 'none';
     }
-});
+}
 
-document.getElementById('musicIcon').addEventListener('click', function() {
+function toggleMusicPlayer() {
     const musicPlayer = document.getElementById('musicPlayer');
     if (musicPlayer.style.display === 'none') {
         musicPlayer.style.display = 'block';
     } else {
         musicPlayer.style.display = 'none';
     }
-});
+}
+
+document.getElementById('countdownIcon').addEventListener('click', toggleCountdown);
+document.getElementById('countdownIcon').addEventListener('touchstart', toggleCountdown);
+
+document.getElementById('musicIcon').addEventListener('click', toggleMusicPlayer);
+document.getElementById('musicIcon').addEventListener('touchstart', toggleMusicPlayer);
 
 document.getElementById('prevBtn').addEventListener('click', function() {
     currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
     audioPlayer.src = songs[currentSongIndex];
     audioPlayer.play();
 });
+document.getElementById('prevBtn').addEventListener('touchstart', function() {
+    currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+    audioPlayer.src = songs[currentSongIndex];
+    audioPlayer.play();
+});
 
 document.getElementById('nextBtn').addEventListener('click', function() {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    audioPlayer.src = songs[currentSongIndex];
+    audioPlayer.play();
+});
+document.getElementById('nextBtn').addEventListener('touchstart', function() {
     currentSongIndex = (currentSongIndex + 1) % songs.length;
     audioPlayer.src = songs[currentSongIndex];
     audioPlayer.play();
@@ -60,28 +76,4 @@ function countdown() {
     }
 }
 
-function startConfetti() {
-    const canvas = document.getElementById('confetti');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const confettiCount = 300;
-    const confetti = [];
-
-    for (let i = 0; i < confettiCount; i++) {
-        confetti.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height - canvas.height,
-            r: Math.random() * 6 + 2,
-            d: Math.random() * confettiCount,
-            color: `hsl(${Math.random() * 360}, 100%, 50%)`,
-            tilt: Math.random() * 10 - 10,
-            tiltAngleIncremental: Math.random() * 0.07 + 0.05,
-            tiltAngle: 0
-        });
-    }
-
-    function drawConfetti() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        confetti.forEach((c, i) =>
+function
