@@ -1,6 +1,18 @@
 const audioPlayer = document.getElementById('audioPlayer');
-const songs = ['song1.mp3', 'song2.mp3', 'song3.mp3'];
+const songs = [
+    "https://github.com/TommyTommy10/Biglietto.Gre.test/raw/main/30%C2%B0",
+    "https://github.com/TommyTommy10/Biglietto.Gre.test/raw/main/Cupido",
+    "https://github.com/TommyTommy10/Biglietto.Gre.test/raw/main/Skott%2520-%2520Overcome%2520%2528Official%2520Lyric%2520Video%2529.mp3"
+];
 let currentSongIndex = 0;
+
+function updateSong() {
+    audioPlayer.src = songs[currentSongIndex];
+    audioPlayer.load();
+    audioPlayer.play().catch(error => {
+        console.error('Errore durante la riproduzione:', error);
+    });
+}
 
 function toggleCountdown() {
     const countdownElement = document.getElementById('countdown');
@@ -22,58 +34,55 @@ function toggleMusicPlayer() {
     }
 }
 
-document.getElementById('countdownIcon').addEventListener('click', toggleCountdown);
-document.getElementById('countdownIcon').addEventListener('touchstart', toggleCountdown);
+function handlePrevNext(action) {
+    if (action === 'prev') {
+        currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+    } else if (action === 'next') {
+        currentSongIndex = (currentSongIndex + 1) % songs.length;
+    }
+    updateSong();
+}
 
-document.getElementById('musicIcon').addEventListener('click', toggleMusicPlayer);
-document.getElementById('musicIcon').addEventListener('touchstart', toggleMusicPlayer);
-
-document.getElementById('prevBtn').addEventListener('click', function() {
-    currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-    audioPlayer.src = songs[currentSongIndex];
-    audioPlayer.play();
+document.getElementById('countdownIcon').addEventListener('click', (event) => {
+    event.preventDefault();
+    toggleCountdown();
 });
-document.getElementById('prevBtn').addEventListener('touchstart', function() {
-    currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-    audioPlayer.src = songs[currentSongIndex];
-    audioPlayer.play();
+document.getElementById('countdownIcon').addEventListener('touchend', (event) => {
+    event.preventDefault();
+    toggleCountdown();
 });
 
-document.getElementById('nextBtn').addEventListener('click', function() {
-    currentSongIndex = (currentSongIndex + 1) % songs.length;
-    audioPlayer.src = songs[currentSongIndex];
-    audioPlayer.play();
+document.getElementById('musicIcon').addEventListener('click', (event) => {
+    event.preventDefault();
+    toggleMusicPlayer();
 });
-document.getElementById('nextBtn').addEventListener('touchstart', function() {
-    currentSongIndex = (currentSongIndex + 1) % songs.length;
-    audioPlayer.src = songs[currentSongIndex];
-    audioPlayer.play();
+document.getElementById('musicIcon').addEventListener('touchend', (event) => {
+    event.preventDefault();
+    toggleMusicPlayer();
+});
+
+document.getElementById('prevBtn').addEventListener('click', (event) => {
+    event.preventDefault();
+    handlePrevNext('prev');
+});
+document.getElementById('prevBtn').addEventListener('touchend', (event) => {
+    event.preventDefault();
+    handlePrevNext('prev');
+});
+
+document.getElementById('nextBtn').addEventListener('click', (event) => {
+    event.preventDefault();
+    handlePrevNext('next');
+});
+document.getElementById('nextBtn').addEventListener('touchend', (event) => {
+    event.preventDefault();
+    handlePrevNext('next');
 });
 
 audioPlayer.addEventListener('ended', function() {
     currentSongIndex = (currentSongIndex + 1) % songs.length;
-    audioPlayer.src = songs[currentSongIndex];
-    audioPlayer.play();
+    updateSong();
 });
 
 function countdown() {
-    const nextBirthday = new Date(new Date().getFullYear(), 8, 30); // Set the date to this year's birthday (September is month 8 in JavaScript)
-    const now = new Date();
-    if (now > nextBirthday) {
-        nextBirthday.setFullYear(nextBirthday.getFullYear() + 1); // If the birthday has passed this year, set it to next year
-    }
-    const diff = nextBirthday - now;
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-    document.getElementById('countdown').innerText = `${days} giorni, ${hours} ore, ${minutes} minuti, ${seconds} secondi`;
-
-    if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
-        startConfetti();
-    }
-}
-
-function
+    const nextBirthday = new Date(new Date().getFullYear(),
