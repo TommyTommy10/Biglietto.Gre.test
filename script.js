@@ -2,7 +2,7 @@ const audioPlayer = document.getElementById('audioPlayer');
 const songs = [
     "https://github.com/TommyTommy10/Biglietto.Gre.test/raw/main/30%C2%B0",
     "https://github.com/TommyTommy10/Biglietto.Gre.test/raw/main/Cupido",
-    "https://github.com/TommyTommy10/Biglietto.Gre.test/raw/main/Skott%2520-%2520Overcome%2520%2528Official%2520Lyric%2520Video%2529.mp3"
+    "https://github.com/TommyTommy10/Biglietto.Gre.test/raw/main/Sfera%2520Ebbasta%252C%2520Marracash%2520-%252015%2520Piani%2520%2528Visual%2529.mp3"
 ];
 let currentSongIndex = 0;
 
