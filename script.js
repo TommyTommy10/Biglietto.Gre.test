@@ -97,7 +97,7 @@ function countdown() {
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-    document.getElementById('countdown').innerText = `${days} giorni, ${hours} ore, ${minutes} minuti, ${seconds} secondi`;
+    document.getElementById('countdown').innerText = `${days} Giorni, ${hours} Ore, ${minutes} Minuti, ${seconds} Secondi`;
 
     if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
         startConfetti();
